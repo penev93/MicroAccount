@@ -1,0 +1,77 @@
+﻿body {
+    background-image: url("../../Images/index-Back.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+/*glyphicons*/
+.glypo-green {
+    color: green;
+}
+
+.glypo-red {
+    color: red;
+}
+/*glyphicons end*/
+
+/*table result*/
+#xRes td {
+    font: italic;
+    font-size: 12px;
+}
+#x td {
+    font: italic;
+    font-size: 12px;
+}
+/*table result end*/
+
+/*buttons*/
+.btn:first-of-type {
+    position: relative;
+    text-align: center;
+}
+
+.faqButton {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    margin-top: 10px;
+    padding: 7px 7px;
+}
+/*buttons end*/
+
+.index {
+    margin: 1%;
+    width: 47%;
+    height: 130px;
+}
+
+.nav {
+    height: 50px;
+    width: 100%;
+    background-color: ActiveCaption;
+}
+
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+}
+
+strong {
+    cursor: pointer;
+}
+
+label {
+    font-size: large;
+}
+
+.row {
+    margin-bottom: 10px;
+}

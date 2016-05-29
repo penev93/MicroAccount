@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Fastlane</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Fastlane.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row" id="Menu">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <button id="bookId" type="button" class="btn index btn-default btn-lg active" data-toggle="modal" data-target="#modal-book-car"><span class="glyphicon glyphicon-road"> </span> Book a car</button>
+                <!--Book a car Start-->
+                <div class="modal fade" id="modal-book-car">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-3 text-left">
+                                                    <label for="brand">Brand</label>
+                                                    <select id="brand">
+                                                        <option selected value="null">Select brand</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3 text-left">
+                                                    <label for="model">Model</label>
+                                                    <select id="model">
+                                                        <option disabled selected value="">Select model</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3 text-left">
+                                                    <label for="registration-number">Plate</label>
+                                                    <select id="plate">
+                                                        <option disabled selected value="">Select plate</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3 text-left">
+                                                    <label for="model">Power</label>
+                                                    <select id="power">
+                                                        <option disabled selected value="">Select power</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3 text-left">
+                                                    <label for="color">Color</label>
+                                                    <select id="color">
+                                                        <option disabled selected value="r">Select color</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3 text-left">
+                                                    <label for="engine">Engine</label>
+                                                    <select id="engine">
+                                                        <option disabled selected value="">Select engine</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-2 text-left">
+                                                    <label for="From"><span class="glyphicon glyphicon-calendar"></span>From</label>
+                                                    <input type="text" id="From" class="datepicker text-center form-control" />
+                                                </div>
+                                                <div class="col-sm-2 text-left">
+                                                    <label for="To"><span class="glyphicon glyphicon-calendar"></span>To</label>
+                                                    <input type="text" id="To" class="datepicker text-center form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2 col-md-offset-5"><button class="btn btn-lg" type="button" id="search" value="Search">Search</button></div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div id="book-result">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Semi End of book a car-->
+                <!--Wrong date error-->
+                <div class="modal fade" id="modal-date-error">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="container-fluid">
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div id="error-result"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Wrong date error End-->
+                <!--Book a car Total End-->
+                <!--Book Record Success-->
+                <div class="modal fade" id="modal-book-success">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="container-fluid">
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <h2 class="text-center"><strong>You have book this car.</strong></h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Book Record Success End-->
+                <!--Book Record Success Explicit-->
+                <div class="modal fade container-fluid" id="modal-Excplicit">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="container-fluid">
+                                    <h1>Would you like to book this car ?</h1>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-2 col-md-offset-5">
+                                            <input type="button" id="bookTrue" class="btn btn-success btn-lg" value="Book" />
+                                            <input type="button" id="bookFalse" class="btn btn btn-warning btn-lg" value="Cancel" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Book Record Success Explicit End-->
+                <!--My Account-->
+                <button id="accId" type="button" data-userid="" class="btn index btn-default btn-lg active" data-toggle="modal" data-target="#modal-account">
+                    <span class="glyphicon glyphicon-user"> </span><span class="username">My Account</span>
+                </button>
+                <!--My Account Login-->
+                <div class="modal fade" id="modal-account">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Login</h2>
+                            </div>
+                            <div class="modal-body">
+
+                                <form method="post">
+                                    <label for="Username">Username : </label><br />
+                                    <input type="text" name="logUser" value="" /><br />
+
+                                    <label for="Password">Password : </label><br />
+                                    <input type="password" name="logPass" value="" /><br />
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-xs-6"><input type="button"  class="btn btn-lg" id="LoginButton" value="Login" /></div>
+                                        <div class="col-xs-6">
+                                            <button type="button" style="position:relative"  class="btn btn-lg" data-toggle="modal" data-target="#modal-signIn" value="Sign in">Sign in</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--My Account Login END-->
+
+                <!--Login Success-->
+                <div class="modal fade" id="modal-login-success">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-4 text-center"><strong class="btn btn-link" id="login-My-Acc">My Account</strong></div>
+                                        <div class="col-sm-4 text-center"><strong class="btn btn-link" id="login-Summary">Summary</strong></div>
+                                        <div class="col-sm-4 text-center"><strong class="btn btn-link" id="login-History">History</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div id="result"></div>
+                                <div id="srcRes"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-4"><button id="mainMenu" class="btn btn-default btn-sm" value="Close">Close</button></div>
+                                        <div class="col-xs-4"><button id="signOut" class="btn btn-default btn-sm" value="Sign out">Sign out</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Login Success End-->
+                <!---MODAL SIGN IN-->
+                <div class="modal fade" id="modal-signIn">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content"> 
+                            <div class="modal-header">
+                                <h2>Sign in</h2>
+                            </div>
+                            <div class="modal-body">
+
+                                <form method="post">
+                                    <label for="Username">Username : </label><br />
+                                    <input type="text" name="username" placeholder="pesho14" value="" /><br />
+                                    <span class="userError error"></span><br />
+
+                                    <label for="Password">Password : </label><br />
+                                    <input type="password" name="password" value="" /><br />
+                                    <span class="passError error"></span><br />
+
+                                    <label for="Firstname">Firstname : </label><br />
+                                    <input type="text" id="x" name="firstname" placeholder="Valeri" value="" /><br />
+                                    <span class="firsError error"></span><br />
+
+                                    <label for="Lastname">Lastname : </label><br />
+                                    <input type="text" name="lastname" placeholder="Penev" value="" /><br />
+                                    <span class="lastError error"></span><br />
+
+                                    <label for="Email">Email : </label><br />
+                                    <input type="text" name="email" placeholder="Valeri@gmail.com" value="" /><br />
+                                    <span class="emailError error"></span><br />
+
+                                    <input type="submit" id="SignButton" value="Sign in" />
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---END OF SIGN IN MODEL-->
+                <!--Modal Error Sign Up-->
+                <div class="modal fade" id="modal-signIn-error">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h2 class="error">User already exists.</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of Modal Error Sign up-->
+                <!--Modal Success Start-->
+                <div class="modal fade" id="modal-signIn-success">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h2 class="success">Congratulation you have sign in.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END Modal Success Start-->
+            </div>
+        </div>
+        <!--My Account END-->
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <!--Call us button-->
+                <button type="button" class="btn index btn-default btn-lg active" data-toggle="modal" data-target="#modal-CallUs"><i class="glyphicon glyphicon-earphone glypo-green"></i> Contact us</button>
+                <div class="modal fade" id="modal-CallUs">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title">Want to book  by phone? Call us on</h3>
+                            </div>
+                            <div class="modal-body">
+                                <strong>+359887046878</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="tel:+359887046878" class="btn btn-sm  btn-success btn-default">Call us</a>
+                                <a href="" class="btn btn-default btn-danger btn-sm" data-dismiss="modal">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Call us button-->
+                <!--Begin of FAQ modal-->
+                <button id="FAQ" type="button" class="btn index btn-default btn-lg active" data-toggle="modal" data-target="#modal-FAQ"><span class="glyphicon glyphicon-question-sign glypo-red"> </span> FAQ</button>
+                <!--FaQ MOdal-->
+                <div class="modal fade" id="modal-FAQ">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Frequently asked questions</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="idFaq">
+                                    <select id="FAQselect">
+                                        <option disabled value="Select Question">Select FAQ</option>
+                                    </select>
+                                </form>
+                                    <div class="FAQContent"></div>
+                                        <button type="button" class="btn btn-primary faqButton" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END OF FAQ MODAL-->
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/JavaScript/functions.js" type="text/javascript"></script>
+</body>
+</html>
